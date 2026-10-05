@@ -1,0 +1,10 @@
+[project]
+name = "mentroid-ml-task1-semantic-search-engine-vector-retrieval-pathan"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "numpy>=2.5.3",
+    "sentence-transformers>=6.1.0",
+]
