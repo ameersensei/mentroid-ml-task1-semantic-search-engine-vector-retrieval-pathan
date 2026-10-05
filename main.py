@@ -1,6 +1,3 @@
-def main():
-    print("Hello from mentroid-ml-task1-semantic-search-engine-vector-retrieval-pathan!")
+from sentence_transformers import SentenceTransformer, util
+import numpy as np
 
-
-if __name__ == "__main__":
-    main()
