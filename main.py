@@ -83,23 +83,26 @@ movies = [
         "plot": "A videographer accidentally slips through the seams of reality into an infinite, yellow-carpeted labyrinth of empty rooms.\nHe must navigate disorienting liminal spaces and lurking supernatural entities to find a way back home."
     }
 ]
+def main():
+    query = input("Enter your query: ")
 
-query = input("Enter your query: ")
+    model = SentenceTransformer('all-MiniLM-L6-v2')
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
-
-movies_embedding = model.encode([movie['plot'] for movie in movies], convert_to_tensor=True)
-query_embedding = model.encode(query, convert_to_tensor=True)
-
-
-similarity = util.cos_sim(query_embedding, movies_embedding)[0]
-similarity_np = similarity.cpu().numpy()
-
-top_indices = np.argsort(similarity_np)[::-1][:3]
+    movies_embedding = model.encode([movie['plot'] for movie in movies], convert_to_tensor=True)
+    query_embedding = model.encode(query, convert_to_tensor=True)
 
 
-print("/the top 3 movies that match your query are:\n")
-for rank, index in enumerate(top_indices, start = 1):
-    print(f"{rank}. {movies[index]['title']} - Similarity Score: {similarity_np[index]:.4f}")
-    print(f"   Plot: {movies[index]['plot']}\n")
+    similarity = util.cos_sim(query_embedding, movies_embedding)[0]
+    similarity_np = similarity.cpu().numpy()
+
+    top_indices = np.argsort(similarity_np)[::-1][:3]
+
+
+    print("/the top 3 movies that match your query are:\n")
+    for rank, index in enumerate(top_indices, start = 1):
+        print(f"{rank}. {movies[index]['title']} - Similarity Score: {similarity_np[index]:.4f}")
+        print(f"   Plot: {movies[index]['plot']}\n")
     print(f"these are the movies for the query: {query}")
+
+if __name__ == "__main__":
+    main()
