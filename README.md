@@ -53,4 +53,4 @@ pip install -r requirements.txt
 get into the folder where the project is saved and open terminal from there
 and 
 run 
-<uv run main.py>
+--> uv run main.py

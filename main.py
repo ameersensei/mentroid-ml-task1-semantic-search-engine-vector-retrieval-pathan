@@ -84,7 +84,12 @@ movies = [
     }
 ]
 def main():
-    query = input("Enter your query: ")
+    while True:
+        query = input("Enter your query: ")
+        if all(char.isalpha() or char.isspace() for char in query):
+            break
+        else:
+            print("Invalid input. Please enter a query containing only letters and spaces.")
 
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
